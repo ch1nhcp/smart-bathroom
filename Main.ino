@@ -19,9 +19,14 @@ boolean LEDStatus = false;
 
 // Bật đèn khi trời tối
 int cambien = 10;// khai báo chân digital 10 cho cảm biến
-
 int Led = 8;//kháo báo chân digital 8 cho đèn LED
 //======================
+
+//Đo và cảnh báo mực nước
+const int Sensor = A0;
+int SensorValue = 0;
+int RedLed = 2, YellowLed = 3, Buzzer = 4;
+//===============================
 
 void setup()
 {
@@ -46,8 +51,15 @@ void setup()
 
   // Tu dong bat den khi troi toi
   pinMode(Led, OUTPUT); //pinMode xuất tín hiệu đầu ra cho led
-  pinMode(cambien, INPUT); //pinMode nhận tín hiệu đầu vào cho cảm biê
+  pinMode(cambien, INPUT); //pinMode nhận tín hiệu đầu vào cho cảm biên
   //--------------------------------------
+
+  //Đo và cảnh báo mực nước
+  pinMode(RedLed, OUTPUT);
+  pinMode(YellowLed, OUTPUT);
+  pinMode(Buzzer, OUTPUT);
+  //  Serial.begin(9600);
+  //===============================
 }
 
 void loop()
@@ -105,8 +117,31 @@ void loop()
 
   // Bật đèn khi trời tối
   int value = digitalRead(cambien);//lưu giá trị cảm biến vào biến value
-
   digitalWrite(Led, value); //xuất giá trị ra đèn LED
   //======================================
+
+
+  //Đo và cảnh báo mực nước: đèn đỏ + báo còi nếu mực nước thấp, đèn xanh nếu ok
+  SensorValue = analogRead(Sensor);
+  Serial.print("Mức nước = ");
+  Serial.print(SensorValue);
+  Serial.println();
+  delay(50);
+
+  if (SensorValue >= 150) {
+    digitalWrite(RedLed , LOW);
+    digitalWrite(YellowLed , HIGH);
+    digitalWrite(Buzzer , LOW);
+    delay(50);
+  } else
+  {
+    digitalWrite(RedLed , HIGH);
+    digitalWrite(YellowLed , LOW);
+    digitalWrite(Buzzer , HIGH);
+    delay(50);
+  }
+
+
+  //===============================
 
 }
