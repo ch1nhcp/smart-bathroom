@@ -11,6 +11,7 @@ DHT dht(DHTPIN, DHTTYPE); //Khai báo thư viện chân cảm biến và kiểu 
 int soundSensor = 7;
 int LED = 6;
 boolean LEDStatus = false;
+int count = 0;
 //----------------------------------
 
 // Bật đèn khi trời tối
@@ -21,7 +22,7 @@ int LedOutside = 8;//kháo báo chân digital 8 cho đèn LED
 //Đo và cảnh báo mực nước
 const int Sensor = A0;
 int SensorValue = 0;
-int RedLed = 2, YellowLed = 3, Buzzer = 4;
+int RedLed = 11, YellowLed = 3, Buzzer = 4;
 //===============================
 
 //Đo và cảnh báo nhiệt độ nước
@@ -29,12 +30,28 @@ int RedLed = 2, YellowLed = 3, Buzzer = 4;
 //int toneVal;
 //unsigned long tepTimer ;
 //===============================
+void battatled()
+{
+  if (LEDStatus == false) {
+      LEDStatus = true;
+      digitalWrite(LED, HIGH);
+      delay(1000);
+      Serial.print("Đã bật đèn! ");
 
+    }
+    else {
+      LEDStatus = false;
+      digitalWrite(LED, LOW);
+      delay(1000);
+      Serial.print("Đã tắt đèn! ");
+    }
+  }
 void setup()
 {
   // Đo nhiệt độ, độ ẩm ===================
   Serial.begin(9600);
-
+  
+attachInterrupt(0, battatled, RISING);
   dht.begin(); //Khởi động cảm biến
 
   lcd.init(); //Khởi động LCD
@@ -63,8 +80,8 @@ void setup()
   //===============================
 
   //Đo và cảnh báo nhiệt độ nước
-//  pinMode(6, OUTPUT);
-//  Serial.begin(9600);
+  //  pinMode(6, OUTPUT);
+  //  Serial.begin(9600);
   //===============================
 }
 
@@ -105,22 +122,24 @@ void loop()
   //==================================
 
   // Vỗ tay bật tắt đèn
-  int SensorData = digitalRead(soundSensor);
-  if (SensorData == 1) {
-
-    if (LEDStatus == false) {
-      LEDStatus = true;
-      digitalWrite(LED, HIGH);
-      delay(200);
-      Serial.print("Đã bật đèn! ");
-    }
-    else {
-      LEDStatus = false;
-      digitalWrite(LED, LOW);
-      delay(200);
-      Serial.print("Đã tắt đèn! ");
-    }
-  }
+//  int SensorData = digitalRead(soundSensor);
+//  if (SensorData == 1) {
+//    count ++;
+//    Serial.print(count);
+//    if (LEDStatus == false) {
+//      LEDStatus = true;
+//      digitalWrite(LED, HIGH);
+//      delay(200);
+//      Serial.print("Đã bật đèn! ");
+//
+//    }
+//    else {
+//      LEDStatus = false;
+//      digitalWrite(LED, LOW);
+//      delay(200);
+//      Serial.print("Đã tắt đèn! ");
+//    }
+//  }
   //===========================
 
   // Bật đèn khi trời tối
@@ -152,27 +171,27 @@ void loop()
 
   //===============================
   //Đo và cảnh báo nhiệt độ nước
-//  int val;
-//  double data;
-//  val = analogRead(A2);
-//  data = (double) val * (5 / 10.24); // convert the voltage to temperture
-//
-//  if (data > 27) {    // If the temperture is over 27 degree, buzzer will alarm.
-//    for (int x = 0; x < 180; x++) {
-//      sinVal = (sin(x * (3.1412 / 180)));
-//      toneVal = 2000 + (int(sinVal * 1000));
-//      tone(6, toneVal);
-//      delay(2);
-//    }
-//  } else {    // If the temperturn is below 27 degree, buzzer will not alarm
-//    noTone(6);
-//  }
-//
-//  if (millis() - tepTimer > 500) {   // output the temperture value per 500ms
-//    tepTimer = millis();
-//    Serial.print("Nhiệt độ nước: ");
-//    Serial.print(data);
-//    Serial.println("C");
-//  }
+  //  int val;
+  //  double data;
+  //  val = analogRead(A2);
+  //  data = (double) val * (5 / 10.24); // convert the voltage to temperture
+  //
+  //  if (data > 27) {    // If the temperture is over 27 degree, buzzer will alarm.
+  //    for (int x = 0; x < 180; x++) {
+  //      sinVal = (sin(x * (3.1412 / 180)));
+  //      toneVal = 2000 + (int(sinVal * 1000));
+  //      tone(6, toneVal);
+  //      delay(2);
+  //    }
+  //  } else {    // If the temperturn is below 27 degree, buzzer will not alarm
+  //    noTone(6);
+  //  }
+  //
+  //  if (millis() - tepTimer > 500) {   // output the temperture value per 500ms
+  //    tepTimer = millis();
+  //    Serial.print("Nhiệt độ nước: ");
+  //    Serial.print(data);
+  //    Serial.println("C");
+  //  }
   //===============================
 }
