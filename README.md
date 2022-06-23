@@ -5,11 +5,11 @@ There are many smart sanitary equipments that are strongly developed and produce
 It is because we want people to have a life leaning towards the high-end and enjoy more, so it requires new technologies that need to be applied in simple everyday products, upgrading them to become modernized to make them more modern. Not only suitable for the market but also suitable for the extremely developed technology era like today.
 
 ## Target:
-* Measure the amount of bath water
-* Measure the temperature of the bathroom
+* Measure the level of bath water
+* Measure bathroom temperature
 * Measure bathroom humidity
-* Visual temperature and humidity display
-* Automatically turn lights on and off when it's dark
+* Visual temperature and humidity display through LCD
+* Automatically turn lights on and off 
 
 ![final diagram full](https://user-images.githubusercontent.com/75044457/174491460-f48a99c2-f5aa-4bb8-a360-b9151f6ab71b.png)
 
