@@ -118,7 +118,7 @@ void loop()
   lcd.setCursor(14, 1);
   lcd.print("*C");
 
-  delay(1000);
+  delay(300);
   //==================================
 
   // Vỗ tay bật tắt đèn
