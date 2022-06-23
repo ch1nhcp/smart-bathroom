@@ -89,9 +89,9 @@ void loop()
 
 {
   // Đo nhiệt độ, độ ẩm ===================
-  float doam = dht.readHumidity(); //Đọc độ ẩm
+  int doam = dht.readHumidity(); //Đọc độ ẩm
 
-  float doC = dht.readTemperature(); //Đọc nhiệt độ C
+  int doC = dht.readTemperature(); //Đọc nhiệt độ C
 
   //  float doF = dht.readTemperature(true); //Đọc nhiệt độ F
 
@@ -102,16 +102,16 @@ void loop()
     return;
   }
 
-  Serial.print("Độ ẩm: ");
-  Serial.print(doam);
+  //Serial.print("Độ ẩm: ");
+  Serial.print(doam); // Cho vào labview
   lcd.setCursor(7, 0); //con trỏ vị trí số 7, hiện ô số 8
   lcd.print(doam);
   lcd.setCursor(12, 0); //Con trở ở vị trí 12, hiện ô 13
   lcd.print("%");
 
-  Serial.print("%  Nhiệt độ: ");
-  Serial.print(doC);
-  Serial.println("°C");
+  //Serial.print("%  Nhiệt độ: ");
+  Serial.print(doC);  // cho vào labview
+  //Serial.println("°C");
 
   lcd.setCursor(10, 1);
   lcd.print(doC);
@@ -150,9 +150,9 @@ void loop()
 
   //Đo và cảnh báo mực nước: đèn đỏ + báo còi nếu mực nước thấp, đèn xanh nếu ok
   SensorValue = analogRead(Sensor);
-  Serial.print("Mức nước = ");
+  //Serial.print("Mức nước = ");
   Serial.print(SensorValue);
-  Serial.println();
+  //Serial.println();
   delay(50);
 
   if (SensorValue >= 150) {
