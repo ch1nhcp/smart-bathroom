@@ -16,3 +16,4 @@ It is because we want people to have a life leaning towards the high-end and enj
 ![Labview](https://user-images.githubusercontent.com/81580234/175266082-f0cb873f-e05a-4a1f-8639-51940a582db7.PNG)
 
 
+![Video Demo](https://drive.google.com/file/d/1q-8NoHdRyF9QnNBoZH8YM1OdyBzVxAlL/view?usp=sharing)
